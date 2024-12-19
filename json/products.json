@@ -1,0 +1,26 @@
+[
+    {
+        "productName": "상품명1",
+        "loanEligibility": "대출대상1",
+        "interestRate": 3.5,
+        "enrollment": "영업점 가입"
+    },
+    {
+        "productName": "상품명2",
+        "loanEligibility": "대출대상2",
+        "interestRate": 4.0,
+        "enrollment": "온라인 가입"
+    },
+    {
+        "productName": "상품명3",
+        "loanEligibility": "대출대상1",
+        "interestRate": 10.0,
+        "enrollment": "영업점 가입"
+    },
+    {
+        "productName": "상품명4",
+        "loanEligibility": "대출대상2",
+        "interestRate": 30.3,
+        "enrollment": "온라인 가입"
+    }
+]

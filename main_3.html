@@ -154,22 +154,56 @@
                 <h2>본문</h2>
                 <div>
                     <div class="con-banner" style="margin-top:20px; font-size: 26px; margin-bottom: 20px;">
-                        <p><span style="font-size: 32px;"><b>홍길동</b></span> 님 환영합니다</p>
+                        <p><span style="font-size: 32px;"><strong>홍길동</strong></span> 님 환영합니다</p>
+
+                    </div>
+                    <div class="con-bottom">
+                        <div class="app-box round-bg" style="float:left; height: 400px;">
+                            <div class="tit"><strong>iM뱅크 APP</strong></div>
+                            <ul class="list">
+                                <li><button type="button" class="btn-imbank"
+                                        onclick="javascript:linkMenuPage('fsv_fna_sub6_1','fsv_fna_sub6','0','com_ebz_fsv_main.act');"><em
+                                            class="img-sprite">iM뱅크</em></button></li>
+                                <li><button type="button" class="btn-imshop"
+                                        onclick="javascript:linkMenuPage('fsv_fna_sub6_2','fsv_fna_sub6','0','com_ebz_fsv_main.act');"><em
+                                            class="img-sprite">iM샵</em></button></li>
+                                <li><button type="button" class="btn-corp"
+                                        onclick="javascript:linkMenuPage('fsv_fna_sub6_3','fsv_fna_sub6','0','com_ebz_fsv_main.act');"><em
+                                            class="img-sprite">iM뱅크 기업</em></button></li>
+                            </ul>
+                        </div><!-- // app-box -->
+                        <div class="board-box round-bg" style="float:right; height: 400px;">
+                            <div class="board-new active">
+                                <div class="tit"><button type="button" title="선택됨"
+                                        class="btn-board"><strong>새소식</strong></button></div>
+                                <div class="list">
+                                    <ul class="list_type1" id="list_newBbs">
+                                    </ul>
+                                    <button type="button" class="btn-more"
+                                        onclick="javascript:linkMenuPage('','hlp_hns_sub1','0','com_ebz_hlp_main.act');"><span>더보기</span></button>
+                                </div>
+                            </div><!-- // board-new -->
+                            <div class="board-event">
+                                <div class="tit"><button type="button" class="btn-board"><strong>이벤트</strong></button>
+                                </div>
+                                <div class="list">
+                                    <ul class="list_type1" id="list_event">
+                                    </ul>
+                                    <button type="button" class="btn-more"
+                                        onclick="javascript:linkMenuPage('','hlp_hns_sub2','0','com_ebz_hlp_main.act');"><span>더보기</span></button>
+                                </div>
+                            </div><!-- // board-event -->
+                        </div><!-- // board-box -->
                     </div>
                 </div>
                 <div>
                     <div class="con-banner"
                         style="margin-top:20px; font-size: 26px; margin-bottom: 20px; margin-top:50px;">
-                        <p>대출 가능한 상품</p>
+                        <p>발행 완료된 토큰</p>
                     </div>
-                    <ul id="products">
-                        <!--li style="margin-bottom: 20px;">
-                            <div class="con-quick round-bg" style="padding: 30px; font-size: 30px;">
-                                <p>asdf</p>
-                            </div>
-                        </li-->
+                    <ul id="tokens">
                         <script>
-                            fetch("./json/products.json")
+                            fetch("./list.json")
                                 .then((res) => {
                                     return res.json()
                                 })
@@ -178,43 +212,28 @@
                                 })
 
                             function List(obj) {
-                                const ulEl = document.querySelector('#products');
-
-                                for (let i = 0; i < obj.length; i++) {
-                                    const pName = obj[i].productName;
-                                    const lEligibility = obj[i].loanEligibility;
-                                    const iRate = obj[i].interestRate;
-                                    const enroll = obj[i].enrollment;
-
-                                    // Create list item and container elements
-                                    const liEl = document.createElement('li');
-                                    const divEl = document.createElement('div');
-                                    const pNameEl = document.createElement('p');
-                                    const lEligEl = document.createElement('p');
-                                    const iRateEl = document.createElement('p');
-                                    const enrollEl = document.createElement('p');
-
-                                    // Apply styles
-                                    liEl.style = "margin-bottom: 20px;";
-                                    divEl.classList = "con-quick round-bg";
-                                    divEl.style = "padding: 30px; font-size: 20px;";
-
-                                    // Set text content for each element
-                                    pNameEl.textContent = `Product Name: ${pName}`;
-                                    lEligEl.textContent = `Loan Eligibility: ${lEligibility}`;
-                                    iRateEl.textContent = `Interest Rate: ${iRate}`;
-                                    enrollEl.textContent = `Enrollment: ${enroll}`;
-
-                                    // Append elements
-                                    divEl.appendChild(pNameEl);
-                                    divEl.appendChild(lEligEl);
-                                    divEl.appendChild(iRateEl);
-                                    divEl.appendChild(enrollEl);
-                                    liEl.appendChild(divEl);
-                                    ulEl.appendChild(liEl);
+                                const data = obj.map(v => v.title);
+                                const arr = new Array(data);
+                                console.log(data);
+                        
+                                for(let i=0;i<data.length;i++){
+                                    const t = data[i];
+                                    const ulel = document.querySelector('#tokens');
+                                    const mli = document.createElement('li');
+                                    const mdiv = document.createElement('div');
+                                    const mtitle = document.createElement('p');
+                                    
+                                    mli.style = "margin-bottom: 20px;";
+                                    mdiv.classList = "con-quick round-bg";
+                                    mdiv.style = "padding: 30px; font-size: 30px;";
+                                    mtitle.textContent = t;
+                        
+                                    ulel.appendChild(mli);
+                                    mli.appendChild(mdiv);
+                                    mdiv.appendChild(mtitle);
                                 }
                             }
-
+                        
                         </script>
                     </ul>
             </section>
