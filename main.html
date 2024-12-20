@@ -35,42 +35,9 @@
             ]
         }
     </script>
-
-    <script type="text/javascript" src="/js/lib/ebz_html5.js?v=20240722"></script>
-    <script type="text/javascript" src="/js/lib/ebz_jquery-1.5.1.min.js"></script>
-    <script type="text/javascript" src="/js/lib/ebz_json2.js"></script>
-    <script type="text/javascript" src="/js/lib/ebz_jquery.cookie.js"></script>
-    <script type="text/javascript" src="/js/jex/ebz_jex.core.js"></script>
-    <script type="text/javascript" src="/js/jexPlugin/ebz_jex.msg.js"></script>
-    <script type="text/javascript" src="/js/jexPlugin/ebz_jex.formatter.js"></script>
-    <script type="text/javascript" src="/js/jexPlugin/ebz_jex.formcheck.js"></script>
-    <script type="text/javascript" src="/js/jexPlugin/ebz_jex.codeManager.js"></script>
-    <script type="text/javascript" src="/js/jexPlugin/ebz_jex.select.js"></script>
-    <script type="text/javascript" src="/js/jexPlugin/ebz_jex.loading.js"></script>
-    <script type="text/javascript" src="/js/jgrid/ebz_jgrid-1.4.1-min-utf8.js"></script>
-    <script type="text/javascript" src="/js/jgrid/ebz_jgrid.plugin.js"></script>
-    <script type="text/javascript" src="/js/jgrid/file/js/ebz_jgrid.fileButton.js"></script>
-    <script type="text/javascript" src="/js/ibsCustom/ebz_ibs.dataCtrl.js"></script>
-    <script type="text/javascript" src="/js/ibsCustom/ebz_ibs.event.js?timestamp=20241210233515"></script>
-    <script type="text/javascript" src="/js/ibsCustom/ebz_ui_dgb.js"></script>
-    <!--script type="text/javascript" src="/js/ibsCustom/ebz_ibs.custom.js?timestamp=20241210233515"></script-->
-    <script type="text/javascript" src="/js/ibsCustom/ebz_ibs.jquery.cycle.all.js"></script>
-    <script type="text/javascript" src="/js/hmp/com/com_ebz_common.js?timestamp=20241210233515"></script>
-    <script type="text/javascript" src="/js/hmp/fnm/com/fnm_ebz_common.js"></script>
-    <script type="text/javascript" src="/Markany/markanyload.js?ver=20241210233515"></script>
-    <script type="text/javascript">
-        var pszProto = (("https:" == document.location.protocol) ? "https://www." : "http://www.");
-        document.write(unescape("%3Cscript src='" + pszProto + "dgb.co.kr/wiselog/js/ebz_wlo.js' type='text/javascript'%3E%3C/script%3E"));
-    </script>
-    <script type="text/javascript">
-        _n_sid = "dgb";
-        _n_uid_cookie = "UID";
-    </script>
-    <script type="text/javascript"> var menu = []; </script>
-    <script type="text/javascript" src="/js/hmp/fnm/com/com_ebz_head_menu.js?ver=20241210233515"></script>
     <script type="text/javascript" src="/cms/js/dgb/ebz_ibs.bottom_2023.js?timestamp=20241210233515"></script>
-    <script type="text/javascript" src="/js/hmp/mnv/dgb_ebz_main.js?ver=20241210233515"></script>
-    <script type="text/javascript" src="/js/hmp/bbs/bbs_ebz_submain.js?ver=20241210233515"></script>
+
+
 </head>
 
 <body>
@@ -157,65 +124,52 @@
                         <p><span style="font-size: 32px;"><b>홍길동</b></span> 님 환영합니다</p>
                     </div>
                 </div>
+
                 <div>
                     <div class="con-banner"
-                        style="margin-top:20px; font-size: 26px; margin-bottom: 20px; margin-top:50px;">
+                        style="font-size: 24px; margin-bottom: 20px; margin-top:50px; margin-left:10px;">
+                        <p>내 ESG 점수 제출하기</p>
+                    </div>
+                    <div class="con-bottom">
+
+                        <div class="app-box round-bg" style="float: left; height: 400px;">
+
+                            <form id="dataForm">
+                                <label for="renewableEnergy">renewableEnergy:</label>
+                                <input type="number" id="renewableEnergy" name="renewableEnergy" required><br><br>
+
+                                <label for="employeeWelfare">employeeWelfare:</label>
+                                <input type="number" id="employeeWelfare" name="employeeWelfare" required><br><br>
+
+                                <label for="communityEngagement">communityEngagement:</label>
+                                <input type="number" id="communityEngagement" name="communityEngagement"
+                                    required><br><br>
+
+                                <label for="governanceScore">governanceScore:</label>
+                                <input type="number" id="governanceScore" name="governanceScore" required><br><br>
+                            </form>
+
+                        </div><!-- // app-box -->
+                        <div class="board-box round-bg" style="float: right; height: 400px;">
+                            <div class="output">
+                                <p><strong>renewableEnergyO:</strong> <span id="renewableEnergyO">0</span></p>
+                                <p><strong>employeeWelfareO:</strong> <span id="employeeWelfareO">0</span></p>
+                                <p><strong>communityEngagementO:</strong> <span id="communityEngagementO">0</span></p>
+                                <p><strong>governanceScoreO:</strong> <span id="governanceScoreO">0</span></p>
+                            </div>
+
+                            <button type="submit">제출</button>
+                        </div><!-- // board-box -->
+                    </div>
+
+                </div>
+
+                <div>
+                    <div class="con-banner"
+                        style="font-size: 24px; margin-bottom: 20px; margin-top:50px; margin-left:10px;">
                         <p>대출 가능한 상품</p>
                     </div>
                     <ul id="products">
-                        <!--li style="margin-bottom: 20px;">
-                            <div class="con-quick round-bg" style="padding: 30px; font-size: 30px;">
-                                <p>asdf</p>
-                            </div>
-                        </li-->
-                        <script>
-                            fetch("./json/products.json")
-                                .then((res) => {
-                                    return res.json()
-                                })
-                                .then((obj) => {
-                                    List(obj);
-                                })
-
-                            function List(obj) {
-                                const ulEl = document.querySelector('#products');
-
-                                for (let i = 0; i < obj.length; i++) {
-                                    const pName = obj[i].productName;
-                                    const lEligibility = obj[i].loanEligibility;
-                                    const iRate = obj[i].interestRate;
-                                    const enroll = obj[i].enrollment;
-
-                                    // Create list item and container elements
-                                    const liEl = document.createElement('li');
-                                    const divEl = document.createElement('div');
-                                    const pNameEl = document.createElement('p');
-                                    const lEligEl = document.createElement('p');
-                                    const iRateEl = document.createElement('p');
-                                    const enrollEl = document.createElement('p');
-
-                                    // Apply styles
-                                    liEl.style = "margin-bottom: 20px;";
-                                    divEl.classList = "con-quick round-bg";
-                                    divEl.style = "padding: 30px; font-size: 20px;";
-
-                                    // Set text content for each element
-                                    pNameEl.textContent = `Product Name: ${pName}`;
-                                    lEligEl.textContent = `Loan Eligibility: ${lEligibility}`;
-                                    iRateEl.textContent = `Interest Rate: ${iRate}`;
-                                    enrollEl.textContent = `Enrollment: ${enroll}`;
-
-                                    // Append elements
-                                    divEl.appendChild(pNameEl);
-                                    divEl.appendChild(lEligEl);
-                                    divEl.appendChild(iRateEl);
-                                    divEl.appendChild(enrollEl);
-                                    liEl.appendChild(divEl);
-                                    ulEl.appendChild(liEl);
-                                }
-                            }
-
-                        </script>
                     </ul>
             </section>
         </main><!-- // contents -->
@@ -227,191 +181,105 @@
 
     </div><!-- // dgbmain2023 -->
 
-    <script>
+</body>
 
-        /* 메인 슬라이더 */
-        $.fn.BasicSlider = function (opt) {
-            opt = $.extend({
-                active: 0,
-                auto: true,
-                paging: true,
-                speed: 1000,
-                delay: 5000
-            }, opt);
+<script>
+    fetch("./json/products.json")
+        .then((res) => {
+            return res.json()
+        })
+        .then((obj) => {
+            List(obj);
+        })
 
-            var $this = this,
-                $slide = $this.find('.slide'),
-                slideLen = $slide.length,
-                autoSet = null,
-                isActive = 0,
-                isBefore = 0,
-                isMove = false;
+    function List(obj) {
+        const ulEl = document.querySelector('#products');
 
-            var slider = {
-                init: function () {
+        for (let i = 0; i < obj.length; i++) {
+            const pName = obj[i].productName;
+            const lEligibility = obj[i].loanEligibility;
+            const iRate = obj[i].interestRate;
+            const enroll = obj[i].enrollment;
 
-                    // 초기 슬라이드 활성화
-                    $slide.eq(isActive).show();
-                    $slide.eq(isActive).children('div').each(function (idx) {
-                        $(this).stop().delay(100 * idx).animate({ 'left': 0, 'opacity': 1 }, opt.speed * 0.5);
-                    });
-                    $slide.eq(isActive).children('p').stop().animate({ 'opacity': 1, 'right': 0 }, opt.speed * 0.9);
+            // Create list item and container elements
+            const liEl = document.createElement('li');
+            const divEl = document.createElement('div');
+            const pNameEl = document.createElement('div');
+            const lEligEl = document.createElement('div');
+            const iRateEl = document.createElement('div');
+            const enrollEl = document.createElement('button');
 
-                    if (slideLen <= 1) {
-                        $this.find('.slide-nav').remove();
-                    } else {
-                        if (opt.paging) {
-                            this.createPaing();
-                        }
-                        if (opt.auto) {
-                            this.autoPlay.play();
-                        } else {
-                            $this.find('.controls').remove();
-                        }
-                        this.controls();
-                    }
-                },
-                createPaing: function () {
-                    var pagingHtml = '';
-                    for (var i = 0; i < slideLen; i++) {
-                        pagingHtml += '<li><button type="button"><span class="img-sprite">' + (i + 1) + '번째 배너</span></button></li>';
-                    }
-                    $this.find('.slide-paging').html(pagingHtml);
-                    $this.find('.slide-paging li').eq(isActive).find('button').addClass('active');
-                },
-                controls: function () {
-                    var _this = this;
-                    // 이전
-                    $this.find('.btn-prev').click(function () {
-                        _this.move('prev', null);
-                        _this.autoPlay.stop();
-                        isMove = true;
-                    });
+            // Set text content for each element
+            pNameEl.textContent = pName;
+            lEligEl.textContent = lEligibility;
+            iRateEl.textContent = `연 ${iRate}%`;
+            enrollEl.textContent = enroll;
 
-                    // 다음
-                    $this.find('.btn-next').click(function () {
-                        _this.move('next', null);
-                        _this.autoPlay.stop();
-                        isMove = true;
-                    });
+            // Apply styles
+            liEl.style = "margin-bottom: 20px;";
+            divEl.classList = "con-quick round-bg";
+            divEl.style = "padding: 30px; font-size: 20px; display: flex; align-items: center;";
+            pNameEl.style = "font-size: 30px; width: 15em; font-weight: bold;";
+            lEligEl.style = "font-size: 13px; width: 20em; padding-right: 5em;";
+            iRateEl.style = "font-size: 25px; width: 7em;";
+            enrollEl.style = "font-size: 20px; width: 6em; color='#000000';";
 
-                    // 페이징
-                    $this.find('.slide-paging button').click(function () {
-                        var idx = $(this).parent().index();
-                        if (idx == isActive) { return false }
-                        _this.move('next', idx);
-                        if (opt.auto) {
-                            _this.autoPlay.stop();
-                        }
-                        isMove = true;
-                    });
 
-                    // 멈춤
-                    $this.find('.btn-stop').click(function () {
-                        _this.autoPlay.stop();
-                    });
+            // Append elements
+            divEl.appendChild(pNameEl);
+            divEl.appendChild(lEligEl);
+            divEl.appendChild(iRateEl);
+            divEl.appendChild(enrollEl);
+            liEl.appendChild(divEl);
+            ulEl.appendChild(liEl);
+        }
+    }
 
-                    // 시작
-                    $this.find('.btn-play').click(function () {
-                        _this.autoPlay.play();
-                    });
+</script>
+<script>
+    document.querySelector('button[type="submit"]').addEventListener('click', function (event) {
+        if (confirm("ESG 점수를 제출하시겠습니까?")) {
+            event.preventDefault();  // 폼 기본 제출 방지
 
-                    // 버튼 포커스
-                    $this.find('button').focus(function () {
-                        _this.autoPlay.stop();
-                    });
-                },
-                autoPlay: {
-                    play: function () {
-                        slider.autoPlay.stop();
-                        autoSet = setInterval(function () {
-                            slider.move('next', null);
-                        }, opt.delay);
-                        $this.find('.btn-stop').show().siblings('.btn-play').hide();
-                    },
-                    stop: function () {
-                        clearInterval(autoSet);
-                        $this.find('.btn-play').show().siblings('.btn-stop').hide();
-                    }
-                },
-                move: function (type, num) {
-                    if (isMove) { return false; }
-                    var _this = this;
-                    var moveSet = null;
-                    isBefore = isActive;
-                    if (type == 'next') {
-                        if (num != null) {
-                            isActive = num % slideLen;
-                        } else {
-                            isActive = (isActive + 1) % slideLen;
-                        }
-                    } else if (type == 'prev') {
-                        isActive = isActive - 1;
-                        isActive = isActive < 0 ? slideLen - 1 : isActive;
-                    }
+            const formData = new FormData(document.getElementById("dataForm"));
+            const formObject = {};
 
-                    // 선택 페이지 제어
-                    if (opt.paging) {
-                        $this.find('.slide-paging li').eq(isActive).find('button').addClass('active').attr('title', '선택됨').parent().siblings().find('button').removeClass('active').removeAttr('title');
-                    }
+            formData.forEach((value, key) => {
+                formObject[key] = value;
+            });
 
-                    // 이전 슬라이드 이동
-                    $slide.eq(isBefore).children('div').each(function (idx) {
-                        $(this).css({ 'left': 0, 'opacity': 1 }).stop().delay(130 * idx).animate({ 'left': '-220px', 'opacity': 0 }, opt.speed * 0.6, function () {
-                            if (idx == 2) {
-                                $slide.eq(isBefore).removeClass('active').hide();
-                            }
-                        });
-                    });
-                    $slide.eq(isBefore).children('p').css('right', '0').stop().animate({ 'opacity': 0, 'right': '20px' }, opt.speed * 0.6)
+            // 수정하기
+            console.log(formObject);
 
-                    // 선택 슬라이드 이동
-                    $slide.eq(isActive).addClass('active').show();
-                    clearTimeout(moveSet);
-                    moveSet = setTimeout(function () {
-                        $slide.eq(isActive).children('div').each(function (idx) {
-                            $(this).css({ 'left': '150px', 'opacity': 0 }).stop().delay(130 * idx).animate({ 'left': 0, 'opacity': 1 }, opt.speed, function () {
-                                if (idx == 2) {
-                                    isMove = false;
-                                }
-                            });
-                        });
-                        $slide.eq(isActive).children('p').css({ 'right': '-20px', 'opacity': 0 }).stop().animate({ 'opacity': 1, 'right': 0 }, opt.speed)
-                    }, 400);
-                }
-            }
-            slider.init();
+            alert("정상적으로 제출되었습니다.");
+
+            location.reload(true);
+        } else {
+            console.log("cancel submit");
         }
 
-        $('#mainVisual').BasicSlider({
-            active: 0,
-            auto: true,
-            speed: 1400,
-            paging: true,
-            delay: 6000
-        });
+    });
+</script>
+<script>
+    // 실시간으로 입력 값 출력하는 함수
+    function updateOutput() {
+        const renewableEnergy = document.getElementById('renewableEnergy').value;
+        const employeeWelfare = document.getElementById('employeeWelfare').value;
+        const communityEngagement = document.getElementById('communityEngagement').value;
+        const governanceScore = document.getElementById('governanceScore').value;
 
-        /* 토글 버튼 */
-        $('.language button[data-toggle-btn]').click(function () {
-            var $this = $(this);
-            var txt = $this.attr('data-toggle-btn');
-            var $parent = $this.parent();
-            if ($parent.hasClass('active')) {
-                $parent.removeClass('active');
-                $this.attr('title', txt + ' 닫힘');
-            } else {
-                $parent.addClass('active');
-                $this.attr('title', txt + ' 열림');
-            }
-        });
+        // 화면에 표시
+        document.getElementById('renewableEnergyO').textContent = renewableEnergy || 0;
+        document.getElementById('employeeWelfareO').textContent = employeeWelfare || 0;
+        document.getElementById('communityEngagementO').textContent = communityEngagement || 0;
+        document.getElementById('governanceScoreO').textContent = governanceScore || 0;
+    }
 
-        /* 게시판 탭 */
-        $('#mainContent .btn-board').click(function () {
-            var $this = $(this);
-            $this.attr('title', '선택됨').parent().parent().addClass('active').siblings().removeClass('active').find('.btn-board').removeAttr('title');
-        });
-
-    </script>
-</body>
+    // input 이벤트로 값 변경 시마다 updateOutput 호출
+    document.getElementById('renewableEnergy').addEventListener('input', updateOutput);
+    document.getElementById('employeeWelfare').addEventListener('input', updateOutput);
+    document.getElementById('communityEngagement').addEventListener('input', updateOutput);
+    document.getElementById('governanceScore').addEventListener('input', updateOutput);
+</script>
 
 </html>

@@ -1,7 +1,7 @@
 [
     {
-        "productName": "상품명1",
-        "loanEligibility": "대출대상1",
+        "productName": "DGB 장기모기지론",
+        "loanEligibility": "본인, 배우자 또는 직계가족명의 주택을 담보로 제공하는 개인",
         "interestRate": 3.5,
         "enrollment": "영업점 가입"
     },

@@ -142,6 +142,3 @@ function FootSelectToggle(btn){
           $this.attr('title', txt + ' 열림');
       }
 }
-
-$(function(){
-});
