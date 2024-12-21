@@ -36,7 +36,80 @@
         }
     </script>
     <script type="text/javascript" src="/cms/js/dgb/ebz_ibs.bottom_2023.js?timestamp=20241210233515"></script>
+    <style>
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
 
+        /* Firefox  */
+        input[type='number'] {
+            -moz-appearance: textfield;
+        }
+
+        /* 전체 폼 중앙 정렬 */
+        #dataForm {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            ;
+            height: 400px;
+            /* 화면 전체 높이 */
+            margin: 0;
+        }
+
+        input::placeholder {
+            color: #d9d9d9;
+        }
+
+        .dust-class {
+            width: 320px;
+            /* 입력 필드의 너비 */
+            position: relative;
+            margin: 5px auto;
+            display: flex;
+            align-items: center;
+        }
+
+        .dust-class label {
+            font-size: 14pt;
+            color: #444444;
+            font-weight: bold;
+            width: 500px;
+        }
+
+        .dust-class input {
+            width: 35px;
+            border: 1px solid #dddddd !important;
+            font-size: 15pt;
+            letter-spacing: -0.04rem;
+            border-radius: 8px;
+            padding: 10px;
+            margin-top: 5px;
+            text-align: right;
+        }
+
+        .dust-class p {
+            margin-block-start: 0px;
+            font-size: 14pt;
+            color: #444444;
+            font-weight: bold;
+            width: 300px;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+        }
+
+        .dust-class p span {
+            width: 5px;
+            font-size: 15pt;
+            letter-spacing: -0.04rem;
+            padding: 10px;
+            margin: top 5px;
+            text-align: right;
+            position: right;
+        }
+    </style>
 
 </head>
 
@@ -121,7 +194,7 @@
                 <h2>본문</h2>
                 <div>
                     <div class="con-banner" style="margin-top:20px; font-size: 26px; margin-bottom: 20px;">
-                        <p><span style="font-size: 32px;"><b>홍길동</b></span> 님 환영합니다</p>
+                        <p><span style="font-size: 32px;"><b id="username">홍길동</b></span> 님 환영합니다</p>
                     </div>
                 </div>
 
@@ -132,38 +205,63 @@
                     </div>
                     <div class="con-bottom">
 
-                        <div class="app-box round-bg" style="float: left; height: 400px;">
-
+                        <div class="app-box round-bg" style="float: left; height: 400px; padding: 0%;">
                             <form id="dataForm">
-                                <label for="renewableEnergy">renewableEnergy:</label>
-                                <input type="number" id="renewableEnergy" name="renewableEnergy" required><br><br>
-
-                                <label for="employeeWelfare">employeeWelfare:</label>
-                                <input type="number" id="employeeWelfare" name="employeeWelfare" required><br><br>
-
-                                <label for="communityEngagement">communityEngagement:</label>
-                                <input type="number" id="communityEngagement" name="communityEngagement"
-                                    required><br><br>
-
-                                <label for="governanceScore">governanceScore:</label>
-                                <input type="number" id="governanceScore" name="governanceScore" required><br><br>
+                                <div class="dust-class">
+                                    <label for="renewableEnergy" >재생 에너지 사용량 점수</label>
+                                    <input type="number" class="txt-input" name="renewableEnergy" id="renewableEnergy" placeholder="0" min="0"
+                                        max="100" required>
+                                </div>
+                                <div class="dust-class">
+                                    <label for="employeeWelfare" >직원 복지 수준 점수</label>
+                                    <input type="number" class="txt-input" name="employeeWelfare" id="employeeWelfare" placeholder="0" min="0"
+                                        max="100" required>
+                                </div>
+                                <div class="dust-class">
+                                    <label for="communityEngagement" >지역사회 공헌 활동 점수</label>
+                                    <input type="number" class="txt-input" name="communityEngagement" id="communityEngagement" placeholder="0"
+                                        min="0" max="100" required>
+                                </div>
+                                <div class="dust-class">
+                                    <label for="governanceScore" >투명성(준법성) 점수</label>
+                                    <input type="number" class="txt-input" name="governanceScore" id="governanceScore" placeholder="0" min="0"
+                                        max="100" required>
+                                </div>
                             </form>
-
                         </div><!-- // app-box -->
-                        <div class="board-box round-bg" style="float: right; height: 400px;">
-                            <div class="output">
-                                <p><strong>renewableEnergyO:</strong> <span id="renewableEnergyO">0</span></p>
-                                <p><strong>employeeWelfareO:</strong> <span id="employeeWelfareO">0</span></p>
-                                <p><strong>communityEngagementO:</strong> <span id="communityEngagementO">0</span></p>
-                                <p><strong>governanceScoreO:</strong> <span id="governanceScoreO">0</span></p>
+
+                        <div class="board-box round-bg" style="display: flex; float: right; height: 400px; padding: 0%; display: flex;
+                            flex-direction: column;
+                            justify-content: center;
+                            
+                            height: 400px;
+                                           margin: 0;">
+                            <div style="position: left; width: 70%;">
+                                <div class="output dust-class" style="margin: 10px auto; width: 80%; margin-top:40px;">
+                                    <p><strong>재생 에너지 사용량 점수</strong></p>
+                                    <p style="width:100px;"><span id="renewableEnergyO">0 점</span></p>
+                                </div>
+                                <div class="output dust-class" style="margin: 10px auto; width: 80%; margin-top:40px;">
+                                    <p><strong>직원 복지 수준 점수</strong></p>
+                                    <p style="width:100px;"><span id="employeeWelfareO">0 점</span></p>
+                                </div>
+                                <div class="output dust-class" style="margin: 10px auto; width: 80%;margin-top:40px; ">
+                                    <p><strong>지역사회 공헌 활동 점수</strong></p>
+                                    <p style="width:100px;"><span id="communityEngagementO">0 점</span></p>
+                                </div>
+                                <div class="output dust-class" style="margin: 10px auto; width: 80%;margin-top:40px;">
+                                    <p><strong>투명성(준법성) 점수</strong></p>
+                                    <p style="width:100px;"><span id="governanceScoreO">0 점</span></p>
+                                </div>
                             </div>
+                            <div style="width: 20%; position: absolute; margin-left: 70%;">
+                                <button type="submit" style="font-size: 24pt; position: center;">제출하기</button>
+                            </div>
+                        </div>
 
-                            <button type="submit">제출</button>
-                        </div><!-- // board-box -->
-                    </div>
 
+                    </div><!-- // board-box -->
                 </div>
-
                 <div>
                     <div class="con-banner"
                         style="font-size: 24px; margin-bottom: 20px; margin-top:50px; margin-left:10px;">
@@ -180,13 +278,31 @@
         </footer>
 
     </div><!-- // dgbmain2023 -->
+    </div>
+
+
 
 </body>
 
 <script>
+    fetch("./json/user.json")
+        .then((res) => {
+            return res.json();
+        })
+        .then((obj) => {
+            getUserName(obj);
+        })
+
+    function getUserName(obj) {
+        const nameEl = document.querySelector('#username');
+        nameEl.textContent = obj.username;
+    }
+</script>
+
+<script>
     fetch("./json/products.json")
         .then((res) => {
-            return res.json()
+            return res.json();
         })
         .then((obj) => {
             List(obj);
@@ -239,26 +355,33 @@
 <script>
     document.querySelector('button[type="submit"]').addEventListener('click', function (event) {
         if (confirm("ESG 점수를 제출하시겠습니까?")) {
-            event.preventDefault();  // 폼 기본 제출 방지
+            event.preventDefault(); // Prevent form submission
+
+            const renewableEnergy = parseInt(document.getElementById('renewableEnergy').value, 10);
+            const employeeWelfare = parseInt(document.getElementById('employeeWelfare').value, 10);
+            const communityEngagement = parseInt(document.getElementById('communityEngagement').value, 10);
+            const governanceScore = parseInt(document.getElementById('governanceScore').value, 10);
+
+            // Validation check
+            if ([renewableEnergy, employeeWelfare, communityEngagement, governanceScore].some(score => score < 0 || score > 100 || isNaN(score))) {
+                alert("모든 점수는 0 이상 100 이하이어야 합니다.");
+                return;
+            }
 
             const formData = new FormData(document.getElementById("dataForm"));
             const formObject = {};
-
             formData.forEach((value, key) => {
                 formObject[key] = value;
+                console.log("!");
             });
 
-            // 수정하기
             console.log(formObject);
-
             alert("정상적으로 제출되었습니다.");
-
-            location.reload(true);
         } else {
             console.log("cancel submit");
         }
-
     });
+
 </script>
 <script>
     // 실시간으로 입력 값 출력하는 함수
@@ -269,10 +392,10 @@
         const governanceScore = document.getElementById('governanceScore').value;
 
         // 화면에 표시
-        document.getElementById('renewableEnergyO').textContent = renewableEnergy || 0;
-        document.getElementById('employeeWelfareO').textContent = employeeWelfare || 0;
-        document.getElementById('communityEngagementO').textContent = communityEngagement || 0;
-        document.getElementById('governanceScoreO').textContent = governanceScore || 0;
+        document.getElementById('renewableEnergyO').textContent = `${renewableEnergy || 0} 점`;
+        document.getElementById('employeeWelfareO').textContent = `${employeeWelfare || 0} 점`;
+        document.getElementById('communityEngagementO').textContent = `${communityEngagement || 0} 점`;
+        document.getElementById('governanceScoreO').textContent = `${governanceScore || 0} 점`;
     }
 
     // input 이벤트로 값 변경 시마다 updateOutput 호출
