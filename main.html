@@ -208,29 +208,29 @@
                         <div class="app-box round-bg" style="float: left; height: 400px; padding: 0%;">
                             <form id="dataForm">
                                 <div class="dust-class">
-                                    <label for="renewableEnergy" >재생 에너지 사용량 점수</label>
-                                    <input type="number" class="txt-input" name="renewableEnergy" id="renewableEnergy" placeholder="0" min="0"
-                                        max="100" required>
+                                    <label for="renewableEnergy">재생 에너지 사용량 점수</label>
+                                    <input type="number" class="txt-input" name="renewableEnergy" id="renewableEnergy"
+                                        placeholder="0" min="0" max="100" required>
                                 </div>
                                 <div class="dust-class">
-                                    <label for="employeeWelfare" >직원 복지 수준 점수</label>
-                                    <input type="number" class="txt-input" name="employeeWelfare" id="employeeWelfare" placeholder="0" min="0"
-                                        max="100" required>
+                                    <label for="employeeWelfare">직원 복지 수준 점수</label>
+                                    <input type="number" class="txt-input" name="employeeWelfare" id="employeeWelfare"
+                                        placeholder="0" min="0" max="100" required>
                                 </div>
                                 <div class="dust-class">
-                                    <label for="communityEngagement" >지역사회 공헌 활동 점수</label>
-                                    <input type="number" class="txt-input" name="communityEngagement" id="communityEngagement" placeholder="0"
-                                        min="0" max="100" required>
+                                    <label for="communityEngagement">지역사회 공헌 활동 점수</label>
+                                    <input type="number" class="txt-input" name="communityEngagement"
+                                        id="communityEngagement" placeholder="0" min="0" max="100" required>
                                 </div>
                                 <div class="dust-class">
-                                    <label for="governanceScore" >투명성(준법성) 점수</label>
-                                    <input type="number" class="txt-input" name="governanceScore" id="governanceScore" placeholder="0" min="0"
-                                        max="100" required>
+                                    <label for="governanceScore">투명성(준법성) 점수</label>
+                                    <input type="number" class="txt-input" name="governanceScore" id="governanceScore"
+                                        placeholder="0" min="0" max="100" required>
                                 </div>
                             </form>
                         </div><!-- // app-box -->
 
-                        <div class="board-box round-bg" style="display: flex; float: right; height: 400px; padding: 0%; display: flex;
+                        <div class="board-box round-bg" style="color:#444444; display: flex; float: right; height: 400px; padding: 0%; display: flex;
                             flex-direction: column;
                             justify-content: center;
                             
@@ -255,7 +255,8 @@
                                 </div>
                             </div>
                             <div style="width: 20%; position: absolute; margin-left: 70%;">
-                                <button type="submit" style="font-size: 24pt; position: center;">제출하기</button>
+                                <button type="submit"
+                                    style="font-size: 24pt; position: center; font-weight: bold;">제출하기</button>
                             </div>
                         </div>
 
@@ -308,6 +309,22 @@
             List(obj);
         })
 
+
+    /*fetch("http://localhost:8080/api/v1"
+        .then((res) => {
+            if (!res.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json(); // 응답을 JSON으로 변환
+        })
+        .then((data)=>{
+            console.log('응답 데이터:', data);
+        })
+        .catch((err)=>{
+            console.error("err:", err);
+        })
+    )*/
+
     function List(obj) {
         const ulEl = document.querySelector('#products');
 
@@ -357,6 +374,8 @@
         if (confirm("ESG 점수를 제출하시겠습니까?")) {
             event.preventDefault(); // Prevent form submission
 
+            const userid = '333';
+            // 수정 필요
             const renewableEnergy = parseInt(document.getElementById('renewableEnergy').value, 10);
             const employeeWelfare = parseInt(document.getElementById('employeeWelfare').value, 10);
             const communityEngagement = parseInt(document.getElementById('communityEngagement').value, 10);
@@ -368,20 +387,35 @@
                 return;
             }
 
-            const formData = new FormData(document.getElementById("dataForm"));
-            const formObject = {};
-            formData.forEach((value, key) => {
-                formObject[key] = value;
-                console.log("!");
-            });
+            // Convert form data to query string
+            const queryString = `?id=${userid}&renewableEnergy=${renewableEnergy}&employeeWelfare=${employeeWelfare}&communityEngagement=${communityEngagement}&governanceScore=${governanceScore}`;
 
-            console.log(formObject);
-            alert("정상적으로 제출되었습니다.");
+            // Server URL with query string
+            const apiUrl = `http://localhost:8080/api/v1`;
+
+            // Send GET request
+            fetch(apiUrl, {
+                method: 'GET',
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`서버 오류: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('서버 응답:', data);
+                    alert("정상적으로 제출되었습니다.");
+                })
+                .catch(error => {
+                    console.error('에러 발생:', error);
+                    alert("점수 제출 중 오류가 발생했습니다.");
+                });
+
         } else {
             console.log("cancel submit");
         }
     });
-
 </script>
 <script>
     // 실시간으로 입력 값 출력하는 함수
